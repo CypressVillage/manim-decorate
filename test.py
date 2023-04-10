@@ -38,4 +38,4 @@ def insertion_sort(arr):
             if arr[j] < arr[j-1]:
                 arr[j], arr[j-1] = arr[j-1], arr[j]
 
-insertion_sort([1, 3, 2])
+bubble_sort([1, 3, 2, 4])
