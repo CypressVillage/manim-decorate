@@ -3,7 +3,7 @@
 from manim import *
 from functools import wraps
 from collections import UserList
-from loguru import logger
+# from loguru import logger
 
 def singleton(cls):
     """单例类装饰器"""

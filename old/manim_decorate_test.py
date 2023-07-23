@@ -3,8 +3,6 @@
 from manim import *
 from functools import wraps
 from collections import UserList
-from loguru import logger
-import pysnooper
 
 def singleton(cls):
     """单例类装饰器"""
@@ -87,7 +85,7 @@ class Sort(Scene):
             Sort.all_mobject.animate().shift(UP*2+LEFT*4).scale(0.33)
         ])
 
-        # self.play(Transform(Sort.all_mobject, Square()))
+        self.play(Transform(Sort.all_mobject, Square()))
         self.play(a)
         self.play(b)
         for i in range(rr+1, len(Sort.arr)):

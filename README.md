@@ -1,4 +1,4 @@
-## Manim Decorate 简介
+## Manim Decorate
 
 使用装饰器轻松渲染你写出的排序算法
 
