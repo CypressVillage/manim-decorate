@@ -4,6 +4,7 @@ from inspect import getsource
 
 from rich import inspect
 from manim import *
+from colour import Color
 
 from animatedtracer import AnimatedTracer
 
@@ -61,7 +62,7 @@ class CodeTracer(AnimatedTracer):
     def construct_focusline(self, line_no: int):
         index = self.linenums.index(line_no)
         if not hasattr(self, 'focusline'):
-            self.focusline = Rectangle(height=0.5, width=30, color=YELLOW_C, fill_opacity=0.3).move_to(self.textobjs[index])
+            self.focusline = Rectangle(height=0.5, width=30, color=Color(YELLOW_C), fill_opacity=0.3).move_to(self.textobjs[index])
             self.play(Create(self.focusline))
         else:
             self.play(self.focusline.animate.move_to(self.textobjs[index]))
