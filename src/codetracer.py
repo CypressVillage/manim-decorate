@@ -67,13 +67,24 @@ class CodeTracer(AnimatedTracer):
             self.play(self.focusline.animate.move_to(self.textobjs[index]))
 
 tracer = CodeTracer()
+tracer2 = CodeTracer()
 # tracer = AnimatedTracer()
 
 @tracer
-def bubble_sort(arr):
-    for i in range(len(arr)):
-        for j in range(len(arr)-i-1):
-            if arr[j] > arr[j+1]:
-                arr[j], arr[j+1] = arr[j+1], arr[j]
-bubble_sort(arr=[5, 3, 4, 2, 1])
+@tracer2
+class BubbleSort:
+    def sort(self, arr):
+        n = len(arr)
+        for i in range(n):
+            for j in range(0, n-i-1):
+                if arr[j] > arr[j+1]:
+                    arr[j], arr[j+1] = arr[j+1], arr[j]
+
+    def aaa(self):
+        pass
+
+arr = [64, 34, 25]
+
+BubbleSort().sort(arr)
+BubbleSort().aaa()
 tracer.render(True)
