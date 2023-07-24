@@ -226,7 +226,7 @@ class Tracer:
         pass
     def on_modified_variable(self, name, value_repr):
         pass
-    def on_finished_line(self, timestamp, thread_info, event, line_no, source_line):
+    def on_finished_line(self, indent, timestamp, thread_info, event, line_no, source_line):
         pass
     def on_call_ended_by_exception(self):
         pass
@@ -562,7 +562,7 @@ class Tracer:
         else:
             self.write(u'{indent}{_STYLE_DIM}{timestamp} {thread_info}{event:9} '
                        u'{line_no:4}{_STYLE_RESET_ALL} {source_line}'.format(**locals()))
-            self.on_finished_line(timestamp, thread_info, event, line_no, source_line)
+            self.on_finished_line(indent, timestamp, thread_info, event, line_no, source_line)
 
         if event == 'return':
             self.frame_to_local_reprs.pop(frame, None)
