@@ -1,5 +1,8 @@
-/media
+*.pyc
+**__pycache__/
 
-/__pycache__
-
+media/
 *.log
+
+.pytest_cache/
+.vscode/

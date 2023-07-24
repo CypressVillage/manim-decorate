@@ -72,7 +72,6 @@ tracer2 = CodeTracer()
 # tracer = AnimatedTracer()
 
 @tracer
-@tracer2
 class BubbleSort:
     def sort(self, arr):
         n = len(arr)
