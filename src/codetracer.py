@@ -1,8 +1,8 @@
 from collections import namedtuple
 from typing import List
-from inspect import getsource
+from inspect import getsourcelines
 
-from rich import inspect
+# from rich import inspect
 from manim import *
 from colour import Color
 
@@ -19,6 +19,10 @@ class CodeTracer(AnimatedTracer):
 
         self.focusline: Rectangle
 
+    def __call__(self, function_or_class):
+        self.construct_generate_code(function_or_class)
+        return super().__call__(function_or_class)
+
     def on_elapsed_time(self, start_time, elapsed_time_string):
         print('on_elapsed_time', start_time, elapsed_time_string)
 
@@ -32,12 +36,7 @@ class CodeTracer(AnimatedTracer):
         pass
 
     def on_finished_line(self, indent, timestamp, thread_info, event, line_no, source_line):
-        if line_no in self.linenums:
-            self.construct_focusline(line_no)
-        else:
-            self.linenums.append(line_no)
-            self.sources.append(source_line)
-            self.construct_newline(line_no, source_line)
+        self.construct_focusline(line_no)
 
     def on_call_ended_by_exception(self):
         pass
@@ -48,6 +47,13 @@ class CodeTracer(AnimatedTracer):
     def on_exception(self, exception):
         pass
 
+    def construct_generate_code(self, function_or_class):
+        source, firstline = getsourcelines(function_or_class)
+        for dx, source_line in enumerate(source):
+            self.linenums.append(firstline+dx)
+            self.sources.append(source_line)
+            self.construct_newline(firstline+dx, source_line)
+
     def construct_newline(self, line_no: int, source_line: str):
         text = Text(str(line_no)+'  '+source_line, font="Consolas", font_size=25, t2c={"def": YELLOW_D})
         self.textobjs.append(text)
@@ -57,7 +63,6 @@ class CodeTracer(AnimatedTracer):
 
         self.add(self.textobjs[-1])
         self.play(Write(self.textobjs[-1]))
-        self.construct_focusline(line_no)
 
     def construct_focusline(self, line_no: int):
         index = self.linenums.index(line_no)
@@ -85,6 +90,6 @@ class BubbleSort:
 
 arr = [64, 34, 25]
 
-BubbleSort().sort(arr)
 BubbleSort().aaa()
+BubbleSort().sort(arr)
 tracer.render(True)

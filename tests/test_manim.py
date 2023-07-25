@@ -6,6 +6,7 @@ class CreateCircle(Scene):
         circle.set_fill(PINK, opacity=0.5)  # set the color and transparency
         self.play(Create(circle))  # show the circle on screen
 
-s = CreateCircle()
-s.construct()
-s.render(True)
+def test_create_circle():
+    scene = CreateCircle()
+    scene.construct()
+    scene.render()
