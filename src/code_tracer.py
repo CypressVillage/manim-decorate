@@ -4,10 +4,10 @@ from inspect import getsourcelines, currentframe
 from manim import *
 from colour import Color
 
-from codestyle import Codestyle
-from animatedtracer import AnimatedTracer
+from utils.codestyle import Codestyle
+from basic_tracer import BasicTracer
 
-class CodeTracer(AnimatedTracer):
+class CodeTracer(BasicTracer):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.codestyle = Codestyle
@@ -22,17 +22,6 @@ class CodeTracer(AnimatedTracer):
     def __call__(self, function_or_class):
         self.construct_generate_code(function_or_class)
         return super().__call__(function_or_class)
-
-    # def __enter__(self):
-    # #     frame = currentframe()
-    # #     print(frame.f_back)
-    # #     self.construct_generate_code(frame.f_back)
-    #     super().__enter__()
-    #     return self
-
-    # def __exit__(self, exc_type, exc_value, traceback):
-    #     super().__exit__(exc_type, exc_value, traceback)
-    #     return self
 
     def on_elapsed_time(self, start_time, elapsed_time_string):
         super().on_elapsed_time(start_time, elapsed_time_string)
@@ -91,16 +80,27 @@ class CodeTracer(AnimatedTracer):
         else:
             self.play(self.focusline.animate.move_to(self.textobjs[index]))
 
+from cli_tracer import CLITracer
 tracer = CodeTracer()
-tracer2 = CodeTracer()
 # tracer = AnimatedTracer()
 
+import numpy as np
 @tracer
-def fib(n):
-        if n <= 1:
-            return n
-        else:
-            return fib(n-1) + fib(n-2)
+def func2():
+    a = np.array([1, 2, 3])
+    b = np.array([4, 5, 6])
+    c = a + b
+    return c
 
-fib(5)
+@tracer
+def func():
+    a = np.array([1, 2, 3])
+    b = np.array([4, 5, 6])
+    c = a + b
+    func2()
+    return c
+
+
+func()
+
 tracer.render(True)
