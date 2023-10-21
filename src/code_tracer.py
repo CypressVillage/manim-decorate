@@ -79,28 +79,3 @@ class CodeTracer(BasicTracer):
             self.play(Create(self.focusline))
         else:
             self.play(self.focusline.animate.move_to(self.textobjs[index]))
-
-from cli_tracer import CLITracer
-tracer = CodeTracer()
-# tracer = AnimatedTracer()
-
-import numpy as np
-@tracer
-def func2():
-    a = np.array([1, 2, 3])
-    b = np.array([4, 5, 6])
-    c = a + b
-    return c
-
-@tracer
-def func():
-    a = np.array([1, 2, 3])
-    b = np.array([4, 5, 6])
-    c = a + b
-    func2()
-    return c
-
-
-func()
-
-tracer.render(True)
