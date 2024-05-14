@@ -4,8 +4,8 @@ from inspect import getsourcelines, currentframe
 from manim import *
 from colour import Color
 
-from utils.codestyle import Codestyle
-from basic_tracer import BasicTracer
+from .utils.codestyle import Codestyle
+from .basic_tracer import BasicTracer
 
 class CodeTracer(BasicTracer):
     def __init__(self, *args, **kwargs):

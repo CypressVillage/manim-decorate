@@ -1,4 +1,4 @@
-from basic_tracer import BasicTracer
+from .basic_tracer import BasicTracer
 
 class CLITracer(BasicTracer):
     def on_elapsed_time(self, start_time, elapsed_time_string):

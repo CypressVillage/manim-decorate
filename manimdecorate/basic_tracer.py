@@ -1,4 +1,4 @@
-from snooper import snoop as snooptracer  # 以后改成自己的tracer
+from .snooper import snoop as snooptracer  # 以后改成自己的tracer
 from manim import Scene
 
 class BasicTracer(snooptracer, Scene):
