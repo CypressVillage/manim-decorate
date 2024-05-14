@@ -4,8 +4,21 @@ from inspect import getsourcelines, currentframe
 from manim import *
 from colour import Color
 
-from .utils.codestyle import Codestyle
 from .basic_tracer import BasicTracer
+
+Codestyle = {
+    "def": YELLOW_D,
+    "class": YELLOW_D,
+    "for": YELLOW_D,
+    "while": YELLOW_D,
+    "if": YELLOW_D,
+    "else": YELLOW_D,
+    "elif": YELLOW_D,
+    "return": YELLOW_D,
+    "import": PURPLE_C,
+    "from": PURPLE_C,
+    # "as": PURPLE_C,
+}
 
 class CodeTracer(BasicTracer):
     def __init__(self, *args, **kwargs):
